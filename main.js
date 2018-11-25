@@ -1,67 +1,74 @@
-const events = [
-  {
-    date: "12th December",
-    title: "Van der Geld exorcism",
-    link: "private event"
-  },
-  {
-    date: "25th December",
-    title: "Rosemary's baby birthday",
-    link: "private event"
-  },
-  {
-    date: "26th December",
-    title: "saint Stephan's revenge mission",
-    link: "private event"
-  },
-  {
-    date: "27th December",
-    title: "Black Sabbath reunion",
-    link: "private event"
-  },
-];
-
 $(document).ready(function() {
   fetch().then(function(data) {
-    // populate(data)
+    // populate(data) // this doesn't work because no data are ready yet.
   });
 });
 
-// Append card to the DOM
+// Append single card to the DOM
 function createCard(card) {
-  const title = card.resolved_title || card.title;
-  const link = card.resolved_url;
-  const date = card.date;
-  const source = card.domain_metadata && card.domain_metadata.name || card.link || "source" ;
-  const image = card.top_image_url;
-  const titleH3 = title && `<span class="card__title">${title}</span>`;
-  const video = card.videoId;
-  const linkA = link
-    ? `<a class="card__link" target="_blank" href="${link}">${source}</a>`
-    : `<span class="card__date">${source}</span>`;
-  const imageImg = image && `<img class="card__image" src="${image}" /></br>`;
+  const pick = determineCardType(card);
+  const content = pick.content;
+  let className = `card card__${pick.type}`;
 
-  // happy path pocket article
-  let content = imageImg && imageImg + titleH3 + "</br>" + linkA
-  let className = "card card__flexFont";
-
-  // event card
-  if (date) {
-    content = '<span class="card__date">'+ card.date +'</span>'  + "</br>" + titleH3  + "</br>" +  linkA;
-    className = "card card__event"
-  }
-
-  // youtube video 
-  if (video) {
-    content = `<iframe class="card__video" src="https://www.youtube.com/embed/${video}?rel=0&modestbranding=1"></iframe>`;
-    className = "card card__video"
-  }
-
-
-  content && $("#results").append('<div class="' + className + '">' + content + "</div>");
+  content &&
+    $("#results").append(
+      '<div class="' + className + '">' + content + "</div>"
+    );
 }
 
-// Populate
+// Article html markup
+function articleCard(article) {
+  const title = article.resolved_title;
+  if (!title) { return }
+  const link = article.resolved_url;
+  const source = article.domain_metadata && article.domain_metadata.name || "source";
+  const image = article.top_image_url;
+  return (`
+    ${image ? `<img class="card__image" src="${image}" /></br>` : ''}
+    <span class="card__title">${title}</span>
+    </br>
+    <a class="card__link" target="_blank" href="${link}">${source}</a>`);
+}
+
+// event html markup
+function eventCard(event) {
+  const date = event.start && new Date(event.start.dateTime).toDateString();
+  const title = event.summary;
+  const location = event.description || event.location || "private even";
+  return `<span class="card__date">
+  ${date}</span></br>
+  <span class="card__title">${title}</span>
+  </br>
+  <span class="card__date">${location}</span>`;
+}
+
+// assign content and type to card
+function determineCardType(card) {
+  if (card.videoId) {
+    return (
+      {
+        type: 'video',
+        content: `<iframe class="card__video" src="https://www.youtube.com/embed/${card.videoId}?rel=0&modestbranding=1"></iframe>`
+      });
+  }
+  if (card.resolved_title) {
+    return ({type: 'article',
+     content: articleCard(card),
+    });
+  }
+  if (card.start) {
+    return ({type: 'event',
+     content: eventCard(card),
+    });
+  }
+  if (card.quote) {
+    return "quote";
+  }
+
+  return null;
+}
+
+// Shuffle and creates cards
 function populate(data) {
   data.sort(function() {
     return 0.5 - Math.random();
@@ -72,8 +79,6 @@ function populate(data) {
       createCard(card);
     });
   }
-
-  // flexFont();
 }
 
 //fetch youtube videos, pocket articles, events, quotes...
@@ -104,9 +109,10 @@ async function fetch() {
     }
   );
 
-  events.forEach(event => {
+  // google calendar stuff happening here
+  $.grabCalendar().items.forEach(event => {
     contents.push(event);
-  })
+  });
 
   // Pocket articles
   await loadJSON(function(response) {
@@ -141,20 +147,7 @@ function loadJSON(callback) {
   xobj.send(null);
 }
 
-// flexFont = function() {
-//   var divs = document.getElementsByClassName("card__flexFont");
-//   for (var i = 0; i < divs.length; i++) {
-//     var length = divs[i].innerHTML.length;
-//     var largestSize =
-//       divs[i].offsetHeight <= divs[i].offsetWidth || divs[i].offsetHeight >= 800
-//         ? divs[i].offsetWidth
-//         : divs[i].offsetHeight;
-
-//     var relFontsize = (largestSize * 15) / length;
-//     divs[i].style.fontSize = relFontsize >= 20 ? relFontsize + "px" : "20px";
-//   }
-// };
-
+// moving contacts around
 var s = $(".title");
 var pos = s.position();
 $(window).scroll(function() {
