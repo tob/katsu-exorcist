@@ -1,0 +1,173 @@
+body {
+  color: white;
+  background: black;
+}
+
+a {
+  color: black;
+  font-style: bold;
+}
+
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: stretch;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  max-width: 1025px;
+  margin: 0 auto;
+}
+
+.card {
+  padding: 20px;
+  width: 100%;
+  max-width: 300px;
+  min-height: 300px;
+  color: white;
+  font-weight: bold;
+  /* font-size: 3em; */
+  text-align: center;
+  border: none;
+  flex-grow: 1;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  justify-content: center;
+  background: black;
+  background-position: 200px 200px;
+  transition: background 2s linear;
+}
+
+.card__article:hover, .card__article:hover ~ .card__article {
+  background: red;
+  background-image: linear-gradient(0deg, black,red, black);
+}
+
+.card__article:hover a, .card__article:hover ~ .card__article a {
+  color: white;
+}
+
+.card__video:hover, .card__video:hover ~ .card__video {
+  background:red;
+  background-image: linear-gradient(90deg,black, red, black);
+}
+
+.card__video {
+  width: 100%;
+  max-width: 450px;
+  flex-grow: 2;
+}
+
+.card--0 {
+  order: 0;
+}
+.card--1 {
+  order: 1;
+}
+.card--2 {
+  order: 2;
+}
+.card--3 {
+  order: 3;
+}
+.card--4 {
+  order: 4;
+}
+.card__event {
+  background: #efefef;
+  color: black;
+  font-size: 2em;
+}
+
+.card__event .card__date {
+  font-size: 0.7em;
+}
+
+.card__event .card__title {
+  font-weight: bold;
+}
+
+.card__event a{
+  font-size: 0.7em;
+  color: black;
+}
+
+.card__image {
+  max-width: 100%;
+  max-height: 250px;
+}
+
+.card iframe {
+  overflow: hidden;
+}
+
+.hero {
+  height: 100%;
+  margin-top: 10px;
+  max-width: 900px;
+  min-height: 300px;
+  width: 100%;
+}
+
+.hero iframe {
+  max-height: none; /* to keep it bigger */
+}
+
+
+
+.title {
+  background: black;
+  border-radius: 5%;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5em;
+  left: 0;
+  max-width: 200px; 
+  padding: 20px;
+  position: absolute;
+  text-align: left;
+  top: 0;
+  transition: top 2s linear;
+  width: auto;
+  border: solid 1px;
+}
+
+/* @media only screen and (max-width: 400px) {
+  .card {
+    max-width: 100%;
+  }
+
+  .title {
+    width: 100%;
+    max-width: none;
+  }
+} */
+
+.title a {
+  color: white;
+}
+
+.large {
+  width: 200px;
+  left: 0;
+  top: 100%;
+  transform: translateY(-100%);
+  position: fixed;
+  transition: top 2s ease-in;
+}
+
+.title h1, h2, h3 {
+  margin: 3px;
+}
+
+iframe {
+  min-height: 300px;
+  max-height: 400px;
+  height: 100%;
+  width: 100%;
+  border: none;
+  scroll-behavior: unset;
+}
