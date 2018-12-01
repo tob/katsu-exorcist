@@ -17,7 +17,7 @@ export default function articleCard (article) {
 
     return {
       type: "article",
-      order: 1,
+      order: Math.floor(Math.random() * (4)) + 1,
       content: <>
       {image && image}
       {title}

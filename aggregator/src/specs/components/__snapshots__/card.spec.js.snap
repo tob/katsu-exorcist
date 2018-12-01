@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render method when event card should have card__event class 1`] = `"<div class=\\"card card__event card--0\\"><span class=\\"card__date\\">Invalid Date</span><span class=\\"card__title\\"></span><span class=\\"card__date\\">private event</span></div>"`;
+
+exports[`render method when undefined card should display a broken card 1`] = `"<div class=\\"card card__undefined card--4\\">some devil touched this</div>"`;

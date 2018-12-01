@@ -1,0 +1,97 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: stretch;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  max-width: 1025px;
+  margin: 0 auto;
+}
+
+/* Card order */
+.card--0 {
+  order: 0;
+}
+.card--1 {
+  order: 1;
+}
+.card--2 {
+  order: 2;
+}
+.card--3 {
+  order: 3;
+}
+.card--4 {
+  order: 4;
+}
+.card--5 {
+  order: 5;
+}
+
+/* Single Card styles */
+.card {
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+  width: 100%;
+  max-width: 300px;
+  min-height: 300px;
+  color: white;
+  font-weight: bold;
+  /* font-size: 3em; */
+  text-align: center;
+  border: none;
+  flex-grow: 1;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  justify-content: center;
+  background: black;
+  background-position: 200px 200px;
+  transition: background 2s linear;
+}
+
+.card__video {
+  width: 100%;
+  max-width: 450px;
+  flex-grow: 2;
+  padding: 0;
+}
+
+.card__event {
+  background: #efefef;
+  color: black;
+  font-size: 2em;
+}
+
+.card__event .card__date {
+  font-size: 0.7em;
+}
+
+.card__event .card__title {
+  font-weight: bold;
+}
+
+.card__event a {
+  font-size: 0.7em;
+  color: black;
+}
+
+/* this should be card__event-image */
+.card__image {
+  max-width: 100%;
+  max-height: 250px;
+}
+
+/* Background effect of Articles */
+.card__article:hover,
+.card__article:hover ~ .card__article {
+  background: red;
+  background-image: linear-gradient(0deg, black, red, black);
+}
+
+.card__article:hover a,
+.card__article:hover ~ .card__article a {
+  color: white;
+}

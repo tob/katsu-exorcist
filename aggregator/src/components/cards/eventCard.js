@@ -1,7 +1,11 @@
 import React from "react";
 
-export function eventCard(event) {
-  const date = event.start && new Date(event.start.dateTime).toDateString();
+export default function eventCard(event) {
+  const start = event.start && new Date(event.start.dateTime);
+  const date = start.toDateString();
+  const today = new Date();
+  // define order based on number of days from today
+  const order =  start.getDate() - today.getDate() > 20 ? Math.floor(Math.random() * (4) + 1) : 0; 
   const title = event.summary;
   const location = event.description || event.location || "private event";
   const content = (
@@ -14,7 +18,7 @@ export function eventCard(event) {
 
   return {
     type: "event",
-    order: 0,
+    order: order,
     content: content
   };
 }

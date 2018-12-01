@@ -1,7 +1,7 @@
 import React from "react";
 import videoCard from "./cards/videoCard.js";
 import articleCard from "./cards/articleCard.js";
-// import eventCard from "./cards/eventCard.js";
+import eventCard from "./cards/eventCard.js";
 
 class Card extends React.Component {
   constructor(props) {
@@ -22,13 +22,13 @@ class Card extends React.Component {
       return articleCard(card);
     }
     if (card.start) {
-      // return eventCard(card);
+      return eventCard(card);
     }
     if (card.quote) {
       return { type: "quote", content: "quote", order: 1 };
     }
 
-    // return ;
+    return { type: "undefined", content: "some devil touched this", order: 4 };
   }
 
   render() {
