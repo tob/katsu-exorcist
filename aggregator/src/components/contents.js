@@ -1,7 +1,11 @@
 import React from "react";
 import axios from "axios";
 import Card from "./card.js";
-import Articles from "../pocket.json";
+import GraphicCard from "./cards/graphicCard";
+import AudioCard from "./cards/audioCard";
+import CandyCircles from "../sketches/CandyCircles";
+import Bounce from "../sketches/Bounce";
+// import Articles from "../pocket.json";
 
 const CALENDAR_ID = process.env.REACT_APP_GOOGLE_CALENDAR_ID;
 const CALENDAR_API_KEY = process.env.REACT_APP_GOOGLE_CALENDAR_API_KEY;
@@ -13,16 +17,6 @@ export default class Contents extends React.Component {
     contents: []
   };
 
-  addJsonsToArray() {
-    // arguments doesn't have forEach, I take it from [] and use .call to invoke
-    [].forEach.call(arguments, item => {
-      if (typeof item === "object") {
-        const obj = item.items || item.list; // source google or pocket json
-        Object.keys(obj).forEach(key => contents.push(obj[key]));
-      }
-    });
-  }
-
   componentWillMount() {
     // set Google variables
     const calendarUrl = `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?key=${CALENDAR_API_KEY}`;
@@ -33,7 +27,7 @@ export default class Contents extends React.Component {
         axios.spread((youtubeRes, calendarRes) => {
           const videos = youtubeRes.data;
           const events = calendarRes.data;
-          this.addJsonsToArray(videos, events, Articles);
+          // this.addJsonsToArray(videos, events, Articles);
           this.setState({ contents: contents });
         })
       );
@@ -43,6 +37,9 @@ export default class Contents extends React.Component {
     const { contents } = this.state;
     return (
       <div className="container" id="results">
+        {/*<GraphicCard />*/}
+        {/*<AudioCard sketch={CandyCircles}/>*/}
+        <AudioCard sketch={Bounce}/>
         {contents.length > 1 &&
           contents.map((article, i) => <Card card={article} key={i} />)}
       </div>

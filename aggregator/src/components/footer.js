@@ -1,17 +1,22 @@
 import React from "react";
 
-export default function footer() {
-  const emojis = ["☠", "♥", "ψ", "✇", "✆","㋡", "웃"];
+
+const randomize = (elements, quantity, target) => {
+  for (let index = 0; index < quantity; index++) {
+    const element = elements[Math.floor(Math.random() * (elements.length - 1))];
+    target.push(element);
+  }
+}
+
+export default function footer({emoji}) {
   let icons = [];
-  // choose 3 random emoji
-  for (let index = 0; index < 3; index++) {
-    const element = emojis[Math.floor(Math.random() * (emojis.length - 1))];
-    icons.push(element);
+  if (!emoji) {
+    randomize(["☠", "♥", "ψ", "✇", "✆","㋡", "웃"], 3, icons);
   }
 
   return (
     <div className="footer">
-      <h5>Made with <span className="footer__icon">{icons.map(emoji => emoji)}</span> in Amsterdam</h5>
+      <h5>Made with <span className="footer__icon">{emoji || icons.map(emoji => emoji)}</span> in Amsterdam</h5>
     </div>
   );
 }

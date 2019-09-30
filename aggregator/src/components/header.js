@@ -2,6 +2,12 @@ import React from "react";
 
 class Header extends React.Component {
   render() {
+    const video =
+        <iframe
+        src="https://www.youtube.com/embed/tqbchIJT2x8?rel=0"
+        title="The Katsu exorcist"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen></iframe>
     return (
       <>
         <div className="title contact">
@@ -13,12 +19,7 @@ class Header extends React.Component {
           </span>
         </div>
         <div className="hero">
-          <iframe
-            src="https://www.youtube.com/embed/tqbchIJT2x8?rel=0"
-            title="The Katsu exorcist"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
+            {video}
         </div>
       </>
     );

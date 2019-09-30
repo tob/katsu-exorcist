@@ -97,3 +97,8 @@
 .card__article:hover ~ .card__article a {
   color: white;
 }
+
+.audiocard__canvas {
+  width: 50% !important;
+  height: 50% !important;
+}
