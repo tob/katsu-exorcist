@@ -4,6 +4,7 @@ import Card from "./card.js";
 import GraphicCard from "./cards/graphicCard";
 import AudioCard from "./cards/audioCard";
 import CandyCircles from "../sketches/CandyCircles";
+import Triangle from "../sketches/Triangle";
 import Bounce from "../sketches/Bounce";
 // import Articles from "../pocket.json";
 
@@ -38,8 +39,9 @@ export default class Contents extends React.Component {
     return (
       <div className="container" id="results">
         {/*<GraphicCard />*/}
+        <AudioCard sketch={Triangle}/>
+        {/*<AudioCard sketch={Bounce}/>*/}
         {/*<AudioCard sketch={CandyCircles}/>*/}
-        <AudioCard sketch={Bounce}/>
         {contents.length > 1 &&
           contents.map((article, i) => <Card card={article} key={i} />)}
       </div>

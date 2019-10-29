@@ -33,17 +33,12 @@ class AudioAnalyser extends Component {
 	}
 
 	render() {
-		const {sketch} = this.props
-		console.log(sketch)
 		return <>
 			{/*<AudioVisualiser audioData={this.state.audioData} />*/}
-			<P5Wrapper classname={'audiocard__canvas'} audioData={this.state.audioData} sketch={Bounce} color='white'/>
+			<P5Wrapper classname={'audiocard__canvas'} audioData={this.state.audioData}  {...this.props} color='white'/>
 			{/*<P5Wrapper classname={'audiocard__canvas'} audioData={this.state.audioData} sketch={CandyCircles} color='white'/>*/}
 			</>;
 	}
-
-
-
 }
 
 export default AudioAnalyser;

@@ -35,11 +35,9 @@ export default function bounce(p){
 					if (item === 10 || item === 200) {
 					}
 
-					if (item % 100 === 0) {
-						// console.log(item);
+					if (item % 30 === 0) {
 						p.fill(255, 255, 255 );
 						p.rect(x + 200, y + 200, 100, 100);
-
 					}
 
 					if (item % 24 === 0) {
@@ -47,7 +45,7 @@ export default function bounce(p){
 						p.rect(0, 0, width, height);
 					}
 
-					if (item % 12 === 0) {
+					if (item % 16 === 0) {
 						// p.background(51);
 						p.fill(255);
 						p.noStroke();
