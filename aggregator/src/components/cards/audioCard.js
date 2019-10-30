@@ -1,7 +1,6 @@
 import React from "react";
 import AudioAnalyser from "../AudioAnalyser";
 import video from '../../assets/coverr-breathtaking-reflection.mp4'
-import dolfjie from '../../assets/dolfje_barking.jpg'
 
 
 class AudioCard extends React.Component {
@@ -38,14 +37,11 @@ class AudioCard extends React.Component {
 
 	render() {
 		const {sketch} = this.props;
-		// const videoElement = this.videoNode && this.videoNode.current;
 		const videoElement = video;
-		console.log(videoElement);
 
 		return (
 			<>
 						<div className="audiocard">
-
 							<button onClick={this.toggleMicrophone}>
 								{this.state.audio ? 'Stop microphone' : 'Get microphone input'}
 							</button>

@@ -40,7 +40,7 @@ export default function Triangle(p){
 							// p.background(255,255,255)
 						}, 1500);
 					}
-					p.fill(0, 255, 0, 98);
+					p.fill(0, 255, 0, 100);
 					// p.fill(255,255,255);
 					// p.stroke(0, 0 , 0);
 					p.clear();
